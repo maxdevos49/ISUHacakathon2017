@@ -26,12 +26,19 @@ var themeSong;
  	game.stage.backgroundColor = 'black';
     game.load.spritesheet('player1', 'Images/p1/p1forwardsheet.png',72,51,2);
     game.load.spritesheet('stars', 'Images/starfield/starfieldsheet.png', 800,600,3);
+<<<<<<< HEAD
     game.load.audio('themeSong', ['../sounds/SpaceBattleTheme.mp3']);
+=======
+    game.load.spritesheet('player2', 'Images/p2/p1forwardsheet.png', 72,51,2)
+
+>>>>>>> c35e628035185dd2193a6ff1ba2a25c9301cb969
 
  }
 
 
 function create(){
+
+	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	//add star sprite
 	stars = [];
@@ -39,9 +46,11 @@ function create(){
 	for (i = 0; i < 3; i++){
 		for (ii = 0; ii < 3; ii++){
 			stars[incr] = game.add.sprite((-800) + (ii * 800),(-600) + (i * 600),'stars');
+			game.physics.enable(stars[incr], Phaser.Physics.ARCADE);
 			incr++;
 		}
 	}
+
 	//add player sprite
 	player1 = game.add.sprite(400,300, 'player1');
 	player1.anchor.setTo(0.5,0.5);
@@ -60,7 +69,14 @@ function create(){
 		stars[i].animations.play('twinkle', 3, true);
 	}
 
+    //  and its physics settings
+    for (i = 0; i < 9; i++){
+    	game.physics.enable(stars[i], Phaser.Physics.ARCADE);
+    	stars[i].body.drag.set(200);
+    	stars[i].body.maxVelocity.set(300);
+	}
 
+<<<<<<< HEAD
 	//
 	keyW = game.input.keyboard.addKey(Phaser.Keyboard.W);
     keyW.onDown.add(moveForward, this);
@@ -78,45 +94,49 @@ function create(){
     themeSong = game.add.audio('themeSong');
     themeSong.play();
 
+=======
+    //  Game input
+    keyW = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    keyA =  game.input.keyboard.addKey(Phaser.Keyboard.A);
+    keyD =  game.input.keyboard.addKey(Phaser.Keyboard.D);
+>>>>>>> c35e628035185dd2193a6ff1ba2a25c9301cb969
 
 }
 
 function update(){
 
-	player1.angle += turn;
+    if (keyW.isDown){
 
+    	for (i = 0; i < 9; i++){
+        	game.physics.arcade.velocityFromAngle(player1.angle, -300, stars[i].body.acceleration);
+        }
+    }else{
 
-	if (move == true){//either maintain speed or increase
-
-		//calculate speed
-		if (speed < topSpeed){
-			speed += 0.1;
-		}else{
-			speed = topSpeed
-		}
-
-		//calculate individual speeds for each vector component
-		angle = player1.angle;
-
-		velX = (speed * Math.cos(angle));
-
-		velY = (speed * Math.sin(angle));
-
+<<<<<<< HEAD
 
 	}else{//decrease speed
+=======
+    	for (i = 0; i < 9; i++){
+        	stars[i].body.acceleration.set(0);
+        }
+    }
+>>>>>>> c35e628035185dd2193a6ff1ba2a25c9301cb969
 
+    if (keyA.isDown){
 
-		velX = velX * friction;
-		velY = velY * friction;
+    	for (i = 0; i < 9; i++){
+        	player1.angle -= 1;
+        }
+    }else if (keyD.isDown){
 
-		if (velX  < 0.01 && velY < 0.01){
-			speed = 0;
-			velY = 0;
-			velX = 0;
-		}
+    	for (i = 0; i < 9; i++){
+        	player1.angle += 1;
+        }
+    }else{
 
-	}
+    }
 
+<<<<<<< HEAD
 
 
 	for (i = 0; i < 9; i++){
@@ -146,3 +166,7 @@ function moveLeft(){
 function moveRight(){
 	turn = 2;
 }
+=======
+
+}
+>>>>>>> c35e628035185dd2193a6ff1ba2a25c9301cb969
