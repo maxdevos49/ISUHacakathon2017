@@ -50,11 +50,18 @@ io.on('connection', function (socket) {
   	console.log("New Connection:\nUsername: " + playerInfo[data.client].username);
   });
 
-
-
   client++;
 
   //game relays below this
+
+  socket.on('playerUpdate', function(data){
+  		socket.emit('playerUpdate', {
+  			client: data.client,
+  			clientX: data.x,
+  			clientY: data.y
+  		});
+  });
+
 
 });
 
