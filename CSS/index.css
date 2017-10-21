@@ -1,15 +1,17 @@
+
 @keyframes fading{
-  0%   {opacity: 1.0}
-  25%  {opacity: 0.75}
-  50%  {opacity: 1.0}
-  75%  {opacity: 0.5}
-  100% {opacity: 1.0}
+  0%    {opacity:1.0;}
+  18%   {opacity:0.5;}
+  40%   {opacity:0.9;}
+  70%   {opacity:0.2;}
+  100%  {opacity:1.0;}
 }
 
- body{
+html{
   background-color: black;
   background-image: url(../Images/starryBasic.jpg);
   background-repeat: repeat;
   animation-name: fading;
   animation-duration: 4s;
+  animation-iteration-count: infinite;
  }
