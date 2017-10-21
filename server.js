@@ -1,20 +1,35 @@
-//game server file
-
-console.log('Server Started!!');
-
-socket = require('socket.io');
-fs = require('fs');
-
-
-
-// Socket setup & pass server
-http = require('http').createServer().listen(8080);
-io = require('socket.io').listen(http);
-
-//start socket operations
-io.on('connection', function(socket){
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//											ISU Hackathon Game Server 2017											 //
+//								Created By: Max DeVos, Thomas Powell, and Mason Timmerman							 //
+//																													 //
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+const version = 0.1;
 
 
+var app = require('express')();
+
+var server = require('http').Server(app);
+
+var io = require('socket.io')(server);
+
+//let the server listen on port 80
+server.listen(8080);
+
+console.log("Server Started!\nServer Version: " + version + "\nListening on http://localhost:8080");
+
+app.get('/', function (req, res) {
+
+  res.sendFile(__dirname + '/index.html');
+
+});
+
+io.on('connection', function (socket) {
+
+  socket.emit('news', { hello: 'world' });
+
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 
 });
 
