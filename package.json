@@ -1,0 +1,23 @@
+{
+  "name": "isuhackathon2017",
+  "version": "1.0.0",
+  "description": "hacking with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxdevos49/ISUHacakathon2017.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxdevos49/ISUHacakathon2017/issues"
+  },
+  "homepage": "https://github.com/maxdevos49/ISUHacakathon2017#readme",
+  "dependencies": {
+    "phaser": "^2.6.2",
+    "socket.io": "^2.0.3"
+  }
+}
