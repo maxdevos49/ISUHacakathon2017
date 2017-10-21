@@ -3,7 +3,7 @@
 console.log('Server Started!!');
 
 socket = require('socket.io');
-
+fs = require('fs');
 
 
 
@@ -14,7 +14,7 @@ io = require('socket.io').listen(http);
 //start socket operations
 io.on('connection', function(socket){
 
-	
+
 
 });
 
