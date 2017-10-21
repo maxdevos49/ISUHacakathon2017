@@ -18,13 +18,15 @@ var speed = 0;
 var topSpeed = 3;
 var friction = 0.95;
 var move = false;
- 
+var themeSong;
+
+
  function preload(){
 
  	game.stage.backgroundColor = 'black';
     game.load.spritesheet('player1', 'Images/p1/p1forwardsheet.png',72,51,2);
     game.load.spritesheet('stars', 'Images/starfield/starfieldsheet.png', 800,600,3);
-
+    game.load.audio('themeSong', ['../sounds/SpaceBattleTheme.mp3']);
 
  }
 
@@ -73,6 +75,9 @@ function create(){
     keyD.onDown.add(moveRight, this);
     keyD.onUp.add(stopMove, this);
 
+    themeSong = game.add.audio('themeSong');
+    themeSong.play();
+
 
 }
 
@@ -97,7 +102,7 @@ function update(){
 
 		velY = (speed * Math.sin(angle));
 
-		
+
 	}else{//decrease speed
 
 
@@ -112,13 +117,13 @@ function update(){
 
 	}
 
-	
+
 
 	for (i = 0; i < 9; i++){
 		stars[i].x -= velX;
 		stars[i].y -= velY;
 	}
-	
+
 }
 
 function moveForward(){
