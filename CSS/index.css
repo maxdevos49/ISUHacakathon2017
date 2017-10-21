@@ -10,6 +10,6 @@
   background-color: black;
   background-image: url(../Images/starryBasic.jpg);
   background-repeat: repeat;
-  animation-name: twinkle;
+  animation-name: fading;
   animation-duration: 4s;
  }
