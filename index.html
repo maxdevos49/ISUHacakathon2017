@@ -2,22 +2,34 @@
 <html>
 	<head>
 	  <title>Space Battle</title>
-	  <link rel="stylesheet" type="text/css" href="/css/index.css">
+	  <link rel="stylesheet" type="text/css" href="/css/index.css">	  
+	  <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.js"></script>
 	  <script type="text/javascript" src="./javascript/index.js"></script>
 	  <script type="text/javascript" src="./javascript/preload.js"></script>
 	  <script type="text/javascript" src="./javascript/create.js"></script>
 	  <script type="text/javascript" src="./javascript/update.js"></script>
-	  <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.js"></script>
+
 	  <script src="/socket.io/socket.io.js"></script>
 	<script>
-		var userName = prompt("What do you want your username to be?");
-		if (userName == ""){
-			userName = "user";
-		}
-	 	var socket = io.connect('http://localhost:8080');
-	 	//socket.on('something', function (data) {
 
-	  	//});
+		//userName = prompt("What do you want your username to be?");
+
+	 	var socket = io.connect('http://10.27.164.135:8080');
+
+	 	socket.on('newConnection', function (data) {
+	 		userName = "user";
+
+			// if (userName == ""){
+			// 	userName = "user";
+			// }
+
+			socket.emit('newConnectionReply', {
+				clientID: data.clientID,
+			  	client: data.client,
+			  	clientUserName: userName
+			});
+
+	  	});
 
 
 	</script>

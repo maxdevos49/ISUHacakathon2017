@@ -29,7 +29,7 @@ html{
   background-image: url(../Images/starryBasic.jpg);
   background-repeat: repeat;
 
-  -webkit-animation-name: fading;
+/*  -webkit-animation-name: fading;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
@@ -42,7 +42,11 @@ html{
   animation-name: fading;
   animation-duration: 3s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;*/
 
 
+ }
+
+ canvas{
+  border: 1px white solid;
  }
