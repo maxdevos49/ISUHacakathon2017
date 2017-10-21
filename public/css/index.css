@@ -1,5 +1,12 @@
-
 @keyframes fading{
+  0%    {opacity:1.0;}
+  18%   {opacity:0.5;}
+  40%   {opacity:0.9;}
+  70%   {opacity:0.3;}
+  100%  {opacity:1.0;}
+}
+
+-webkit-@keyframes fading{
   0%    {opacity:1.0;}
   18%   {opacity:0.5;}
   40%   {opacity:0.9;}
@@ -11,9 +18,16 @@ html{
   background-color: black;
   background-image: url(../Images/starryBasic.jpg);
   background-repeat: repeat;
+
   animation-name: fading;
+  -webkit-animation-name: fading;
+
   animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+
   animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
  }
