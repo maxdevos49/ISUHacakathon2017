@@ -6,7 +6,9 @@
 const version = 0.1;
 
 
-var app = require('express')();
+var express = require('express'),app = express();
+
+var fs = require('fs');
 
 var server = require('http').Server(app);
 
@@ -16,6 +18,9 @@ var io = require('socket.io')(server);
 server.listen(8080);
 
 console.log("Server Started!\nServer Version: " + version + "\nListening on http://localhost:8080");
+
+
+app.use(express.static('public'))
 
 app.get('/', function (req, res) {
 
