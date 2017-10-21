@@ -12,7 +12,8 @@ html{
   background-image: url(../Images/starryBasic.jpg);
   background-repeat: repeat;
   animation-name: fading;
-  animation-duration: 4s;
+  animation-duration: 3.5s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
  }
