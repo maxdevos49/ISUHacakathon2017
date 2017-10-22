@@ -211,22 +211,18 @@ function aboutGameFunc(){
 
 function startGameFunc(){
 	scene = "game";
-	splashscreen.events.onInputDown.add(destroySprite, this);
-	logo.events.onInputDown.add(destroySprite, this);
-	backgroundstars.events.onInputDown.add(destroySprite, this);
-	start.events.onInputDown.add(destroySprite, this);
-	about.events.onInputDown.add(destroySprite, this);
+    start.destroy();
+    logo.destroy();
+    backgroundstars.destroy();
+    about.destroy();
+    splashscreen.destroy();
 	create();
 
 }
 
 function destroySprite (sprite) {
 
-    start.destroy();
-    logo.destroy();
-    backgroundstars.destroy();
-    about.destroy();
-    splashscreen.destroy();
+
 
 
 }
