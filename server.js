@@ -29,11 +29,17 @@ app.get('/', function (req, res) {
 });
 
 var client = 0
-var playerInfo = [];
+var player = [];
+var connectedClients = [];
+
+
+setInterval(getupdates, 1000/10);
 
 io.on('connection', function (socket) {
 
 //new game setup here
+
+connectedClients.push(socket.id);
 
   socket.emit('newConnection', {
   	clientID: socket.Id,
@@ -46,26 +52,47 @@ io.on('connection', function (socket) {
 
 
   socket.on('newConnectionReply', function(data){
-  	playerInfo[data.client] = new player(data.clientID,data.client,data.clientUserName,0,0,0,100,0,0);
-  	console.log("New Connection:\nUsername: " + playerInfo[data.client].username);
+  	player[data.client] = new playerInfo(data.clientID,data.client,data.clientUserName,0,0,0,100);
+  	console.log("New Connection:\n" + socket.id);
+  	io.sockets.emit("newPlayer", "New Player Joined");
   });
 
   client++;
 
   //game relays below this
 
-  socket.on('playerUpdate', function(data){
-  		socket.emit('playerUpdate', {
+  		socket.on('playerUpdate', function(data){
+  		io.sockets.emit('playerUpdate', {
   			client: data.client,
-  			clientX: data.x,
-  			clientY: data.y
+  			clientX: data.clientX,
+  			clientY: data.clientY,
+  			clientAngle: data.clientAngle,
+  			connectedClients: connectedClients
   		});
+
+  // 		console.log("info");
+		// console.log(data.client);
+		// console.log(data.clientX);
+		// console.log(data.clientY);
+		// console.log(data.clientAngle);
   });
 
+  socket.on('disconnect', function (data) {
+    
+    index = connectedClients.indexOf(socket.id);
+    connectedClients.splice(index,index+1);
+  	console.log(socket.id);
+
+  });
 
 });
 
-function player(clientID, client,clientUsername,clientX,clientY,clientScore,clientHealth,clientXVel,clientYVel){
+function getupdates(){
+	io.sockets.emit("retrieveUpdates", "HI");
+}
+
+
+function playerInfo(clientID, client,clientUsername,clientX,clientY,clientScore,clientHealth){
 	this.clientID = clientID;
 	this.client = client;
 	this.username = clientUsername;
@@ -73,7 +100,5 @@ function player(clientID, client,clientUsername,clientX,clientY,clientScore,clie
 	this.y = clientY;
 	this.score = clientScore;
 	this.health = clientHealth;
-	this.XVel = clientXVel;
-	this.YVel = clientYVel;
 }
 

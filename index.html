@@ -18,7 +18,8 @@
 
 	 	socket.on('newConnection', function (data) {
 	 		userName = "user";
-
+	 		clientNum = data.client;
+	 		myclientID = data.clientID
 			// if (userName == ""){
 			// 	userName = "user";
 			// }
@@ -29,7 +30,10 @@
 			  	clientUserName: userName
 			});
 
+
 	  	});
+
+		
 
 
 	</script>
