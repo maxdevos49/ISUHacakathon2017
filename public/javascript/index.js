@@ -1,4 +1,6 @@
-/*global  io: false, console:false, Phaser: false*/
+/*global  io: false, console:false, Phaser: false, window:false*/
+/*jslint node:true*/
+/*jshint esversion: 6*/
 
 //initial varibles
 "use strict";
@@ -19,7 +21,7 @@ var startUnHighlight;
 var aboutUnHighlight;
 var stars = [];
 var ship = [];
-var socket; 
+var socket;
 var keyW;
 var keyA;
 var keyD;
@@ -33,7 +35,7 @@ function socketStuff(){
 	socket = io.connect('http://localhost:8080', {
 		reconnection: false
 	});
-	
+
 	socket.on("connReply", function(data){
 
 		myClient = data.clientNum;
@@ -53,7 +55,7 @@ function socketStuff(){
 		connectedCount = 0;
 
 		for(var i = 0; i < data.length; i++){
-			
+
 			if (data[i] !== null){
 
 				connectedCount +=1;
@@ -70,7 +72,7 @@ function socketStuff(){
 				}
 
 			}
-			
+
 		}
 
 		console.log("There are " + connectedCount + " user online!");
@@ -251,7 +253,7 @@ function create(){
 function update(){
 
 	if (scene == "game" && connection === true){
-		
+
 	    if (keyW.isDown){
 
 	    	//move forward
@@ -267,7 +269,7 @@ function update(){
         	//update the player object
 	        player[myClient].x = -(stars[0].x - ship[myClient].x);
 	        player[myClient].y = -(stars[0].y - ship[myClient].y);
-        
+
 	    }
 	    if (keyA.isDown){
 
@@ -277,7 +279,7 @@ function update(){
 		        player[myClient].angle = ship[myClient].angle;
 
 
-	        
+
 	    }else if (keyD.isDown){
 
 	        	ship[myClient].angle += 2;
@@ -370,5 +372,4 @@ function playerInfo(clientID,client,clientX,clientY,clientAngle){
 	this.x = clientX;
 	this.y = clientY;
 	this.angle = clientAngle;
-}	
-	
+}
